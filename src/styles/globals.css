@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Itim&family=Roboto:wght@100;400;500;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* font-family: 'Climate Crisis', cursive;
+font-family: 'Itim', cursive;
+font-family: 'Roboto', sans-serif; */
+
+body {
+	font-family: "Itim", sans-serif;
+}
