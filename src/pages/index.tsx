@@ -96,22 +96,36 @@ function Home() {
 				</div>
 				<div className="navbar-end">
 					<Link
-						className="btn btn-primary"
+						className="btn btn-primary rounded-full w-28"
 						href="/login"
 					>
 						Log in
 					</Link>
 				</div>
 			</div>
-			<div>
+			<div className="text-center space-y-5 mt-44">
+				<h1 className="sr-only">Tareasy</h1>
 				<h2 className="text-5xl">Task Made Easy</h2>
 				<p>
-					Keep track of your daily progress and gain satisfaction from
-					completion.
+					Keep track of your daily progress and gain{" "}
+					<span className="block">
+						clarity, capacity, confidence and satisfaction
+					</span>{" "}
+					from completion.
 				</p>
-				<div>
-					<Link href="/get-started">Get Started</Link>
-					<Link href="/learn-more">Learn More</Link>
+				<div className="space-x-2">
+					<Link
+						className="btn btn-primary rounded-full"
+						href="/signup"
+					>
+						Get Started
+					</Link>
+					<Link
+						className="btn btn-secondary rounded-full"
+						href="/learn-more"
+					>
+						Learn More
+					</Link>
 				</div>
 			</div>
 		</Wrapper>
