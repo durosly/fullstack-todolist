@@ -1,4 +1,3 @@
-import Header from "@/components/layout/header";
 import Wrapper from "@/components/layout/wrapper";
 import DataIntegration from "@/icons/data-integration";
 import Priority from "@/icons/priority";
@@ -8,7 +7,6 @@ import Link from "next/link";
 function Home() {
 	return (
 		<Wrapper>
-			<Header />
 			<div className="text-center space-y-5 mt-44 h-[70vh]">
 				<h1 className="sr-only">Tareasy</h1>
 				<h2 className="text-5xl">Task Made Easy</h2>
