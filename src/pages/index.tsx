@@ -56,13 +56,16 @@ function Home() {
 						examples of how Tareasy can help you be more productive:
 					</p>
 				</div>
-				<div className="flex gap-5 mt-20 text-center justify-center">
+				<div className="flex gap-5 mt-20 mb-20 text-center justify-center">
 					<div className="bg-slate-100 p-5 rounded-2xl flex-1 flex flex-col justify-center">
 						<Priority className="w-44 h-60 mx-auto" />
 						<h3 className="text-2xl font-bold">
 							Task Prioritization
 						</h3>
-						<p>prioritize your tasks based on their importance</p>
+						<p>
+							Orchestrate your tasks according to importance. This
+							makes it simple to fully focus on the key activities
+						</p>
 					</div>
 					<div className="flex flex-col gap-5 flex-1">
 						<div className="flex-1 p-5 bg-slate-100 rounded-2xl">
@@ -88,6 +91,26 @@ function Home() {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div className="max-w-4xl mx-auto  p-5 text-center rounded-2xl mb-20">
+				<h3 className="text-3xl mb-5">
+					Bring your productivity to the next level
+				</h3>
+				<p>
+					The best productivity tool for anyone who wants to
+					accomplish more in less time is Tareasy. Tareasy is the only
+					to-do list program you&apos;ll ever need thanks to its
+					simple interface, cutting-edge features, and seamless
+					integration. Why then wait?{" "}
+					<Link
+						className="text-success hover:underline"
+						href="/signup"
+					>
+						Join
+					</Link>{" "}
+					Tareasy right away to start managing your productivity like
+					never before.
+				</p>
 			</div>
 		</Wrapper>
 	);
