@@ -18,6 +18,14 @@ function MobileFooter() {
 			<Link href="/dashboard">
 				<Chart className="w-5 h-5" />
 			</Link>
+			<Link href="/profile">
+				<label
+					tabIndex={0}
+					className="bg-slate-300 flex items-center justify-center text-xs m-1 w-5 h-5 overflow-hidden rounded-[50%]"
+				>
+					AV
+				</label>
+			</Link>
 		</div>
 	);
 }

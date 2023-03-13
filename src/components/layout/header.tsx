@@ -52,7 +52,7 @@ function Header({ isAuth }: { isAuth?: boolean }) {
 					<div className="dropdown dropdown-end hidden lg:block">
 						<label
 							tabIndex={0}
-							className="bg-slate-300 flex items-center justify-center text-xl m-1 w-10 h-10 overflow-hidden rounded-[50%]"
+							className="bg-slate-300 cursor-pointer flex items-center justify-center text-xl font-bold m-1 w-10 h-10 overflow-hidden rounded-[50%]"
 						>
 							AV
 						</label>
