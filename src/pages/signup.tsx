@@ -1,6 +1,7 @@
 import Wrapper from "@/components/layout/wrapper";
 import Github from "@/icons/github";
 import Google from "@/icons/google";
+import Link from "next/link";
 
 function SignupPage() {
 	return (
@@ -11,7 +12,7 @@ function SignupPage() {
 			>
 				<div className="space-y-5">
 					<div>
-						<h1 className="text-4xl">Signup</h1>
+						<h1 className="text-4xl text-center mb-3">Signup</h1>
 						<p>Enter your details to get started</p>
 					</div>
 					<div>
@@ -50,6 +51,15 @@ function SignupPage() {
 						<Google className="w-5 fill-current" />
 					</button>
 				</div>
+				<p className="mt-5 text-center">
+					Already have an account?{" "}
+					<Link
+						className="font-bold"
+						href="/login"
+					>
+						Login
+					</Link>
+				</p>
 			</form>
 		</Wrapper>
 	);
