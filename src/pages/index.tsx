@@ -48,10 +48,11 @@ function Home() {
 						and receive reminders so you never forget a task again.
 					</p>
 					<p>
-						But that's just the start. Tareasy includes a number of
-						advanced features designed to help you optimize your
-						workflow and get more done in less time. Here are a few
-						examples of how Tareasy can help you be more productive:
+						But that&apos;s just the start. Tareasy includes a
+						number of advanced features designed to help you
+						optimize your workflow and get more done in less time.
+						Here are a few examples of how Tareasy can help you be
+						more productive:
 					</p>
 				</div>
 				<div className="flex gap-5 mt-20 mb-20 text-center justify-center">
