@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Nav from "./nav";
 
-function Header() {
+function Header({ isAuth }: { isAuth?: boolean }) {
 	return (
 		<div className="navbar bg-base-100">
 			<div className="navbar-start">
@@ -29,7 +29,7 @@ function Header() {
 						tabIndex={0}
 						className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 					>
-						<Nav />
+						<Nav isAuth={isAuth} />
 					</ul>
 				</div>
 				<Link
@@ -41,16 +41,25 @@ function Header() {
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1">
-					<Nav isMobile />
+					<Nav
+						isMobile
+						isAuth={isAuth}
+					/>
 				</ul>
 			</div>
 			<div className="navbar-end">
-				<Link
-					className="btn btn-primary rounded-full w-28"
-					href="/login"
-				>
-					Log in
-				</Link>
+				{isAuth ? (
+					<button className="btn btn-primary rounded-full hidden lg:inline-flex">
+						Signout
+					</button>
+				) : (
+					<Link
+						className="btn btn-primary rounded-full w-28"
+						href="/login"
+					>
+						Log in
+					</Link>
+				)}
 			</div>
 		</div>
 	);
