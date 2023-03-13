@@ -49,9 +49,27 @@ function Header({ isAuth }: { isAuth?: boolean }) {
 			</div>
 			<div className="navbar-end">
 				{isAuth ? (
-					<button className="btn btn-primary rounded-full hidden lg:inline-flex">
-						Signout
-					</button>
+					<div className="dropdown dropdown-end hidden lg:block">
+						<label
+							tabIndex={0}
+							className="bg-slate-300 flex items-center justify-center text-xl m-1 w-10 h-10 overflow-hidden rounded-[50%]"
+						>
+							AV
+						</label>
+						<ul
+							tabIndex={0}
+							className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+						>
+							<li>
+								<Link href="/profile">Profile</Link>
+							</li>
+							<li>
+								<button className="btn btn-ghost justify-start">
+									Sign out
+								</button>
+							</li>
+						</ul>
+					</div>
 				) : (
 					<Link
 						className="btn btn-primary rounded-full w-28"

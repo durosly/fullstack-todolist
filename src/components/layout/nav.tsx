@@ -42,8 +42,8 @@ function Nav({ isMobile, isAuth }: NavType) {
 				<li>
 					<Link href="/management">Todo</Link>
 				</li>
-				<li>
-					<button className="btn btn-error bg-opacity-10 lg:hidden">
+				<li className="lg:hidden">
+					<button className="btn btn-error bg-opacity-10 ">
 						Sign out
 					</button>
 				</li>
