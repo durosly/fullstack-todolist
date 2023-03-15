@@ -1,7 +1,7 @@
-import React from "react";
+import AuthWrapper from "@/components/layout/auth-wrapper";
 
 function Dashboard() {
-	return <div>Dashboard</div>;
+	return <AuthWrapper>Dashboard</AuthWrapper>;
 }
 
 export default Dashboard;
