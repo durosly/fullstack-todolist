@@ -31,6 +31,65 @@ function Dashboard() {
 					<p className="relative uppercase">Productivity(%)</p>
 				</div>
 			</div>
+
+			<div className="mt-20 max-w-2xl mx-auto bg-slate-100 rounded-2xl py-5">
+				<h2 className="px-10 uppercase">⌛ Current and next todo</h2>
+				<ul className="">
+					<li className="flex justify-between items-center py-4 px-10 first:border-b-4">
+						<span>
+							<span className="font-bold mr-2">1.</span>Grocery
+						</span>
+						<div className="dropdown dropdown-end">
+							<label
+								tabIndex={0}
+								className="bg-slate-200 py-1 px-2 rounded-full"
+							>
+								🏃‍♂️ In progress
+							</label>
+							<ul
+								tabIndex={0}
+								className="dropdown-content menu p-2 bg-base-100 shadow-xl rounded-box w-52"
+							>
+								<li className="cursor-pointer py-1 hover:bg-slate-400 px-3 hover:text-white">
+									🏃‍♂️ In progress
+								</li>
+								<li className="cursor-pointer py-1 hover:bg-slate-400 px-3 hover:text-white">
+									✅ Done
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li className="flex justify-between items-center py-4 px-10 first:border-b-4">
+						<span>
+							<span className="font-bold mr-2">2.</span>Buy new
+							monitor
+						</span>
+						<div className="dropdown dropdown-end">
+							<label
+								tabIndex={0}
+								className="bg-slate-200 py-1 px-2 rounded-full"
+							>
+								💤 Inactive
+							</label>
+							<ul
+								tabIndex={0}
+								className="dropdown-content menu p-2 bg-base-100 shadow-xl rounded-box w-52"
+							>
+								<li className="cursor-pointer py-1 hover:bg-slate-400 px-3 hover:text-white">
+									🏃‍♂️ In progress
+								</li>
+								<li className="cursor-pointer py-1 hover:bg-slate-400 px-3 hover:text-white">
+									✅ Done
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div className="mt-20 max-w-2xl mx-auto bg-slate-100 rounded-2xl py-5">
+				<h2 className="px-10 uppercase">📈 Productivity</h2>
+			</div>
 		</AuthWrapper>
 	);
 }
