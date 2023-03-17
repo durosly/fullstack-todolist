@@ -87,6 +87,7 @@ function Dashboard() {
 								</li>
 							</ul>
 						</div>
+						<span>1:00:23</span>
 					</li>
 					<li className="flex justify-between items-center py-4 px-10 first:border-b-4">
 						<span>
@@ -112,6 +113,7 @@ function Dashboard() {
 								</li>
 							</ul>
 						</div>
+						<span>--:--:--</span>
 					</li>
 				</ul>
 			</div>
