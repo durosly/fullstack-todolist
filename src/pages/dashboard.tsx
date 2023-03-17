@@ -6,6 +6,7 @@ import Chart from "@/icons/chart";
 import Priority from "@/icons/priority";
 import ProgressTracker from "@/icons/progress-tracker";
 import Trash from "@/icons/trash";
+import BarchartDisplay from "@/components/barchartDisplay";
 
 const CustomInput = forwardRef(
 	(
@@ -139,6 +140,7 @@ function Dashboard() {
 						/>
 					</div>
 				</div>
+				<BarchartDisplay />
 			</div>
 		</AuthWrapper>
 	);
