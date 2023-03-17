@@ -1,10 +1,36 @@
+import { useState, forwardRef, ForwardedRef } from "react";
+import DatePicker from "react-datepicker";
 import AuthWrapper from "@/components/layout/auth-wrapper";
+import Calender from "@/icons/calender";
 import Chart from "@/icons/chart";
 import Priority from "@/icons/priority";
 import ProgressTracker from "@/icons/progress-tracker";
 import Trash from "@/icons/trash";
 
+const CustomInput = forwardRef(
+	(
+		{
+			value,
+			onClick,
+		}: {
+			value: string;
+			onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+		},
+		ref: ForwardedRef<HTMLButtonElement>
+	) => (
+		<button
+			className="flex items-center gap-2"
+			onClick={onClick}
+			ref={ref}
+		>
+			<Calender className="w-5 fill-primary/30" />
+			{value}
+		</button>
+	)
+);
+
 function Dashboard() {
+	const [startDate, setStartDate] = useState(new Date());
 	return (
 		<AuthWrapper>
 			<div className="flex flex-col md:flex-row flex-wrap md:flex-nowrap gap-5 justify-center mt-10">
@@ -33,7 +59,9 @@ function Dashboard() {
 			</div>
 
 			<div className="mt-20 max-w-2xl mx-auto bg-slate-100 rounded-2xl py-5">
-				<h2 className="px-10 uppercase">⌛ Current and next todo</h2>
+				<h2 className="px-10 uppercase font-bold">
+					⌛ Current and next todo
+				</h2>
 				<ul className="">
 					<li className="flex justify-between items-center py-4 px-10 first:border-b-4">
 						<span>
@@ -87,8 +115,30 @@ function Dashboard() {
 				</ul>
 			</div>
 
-			<div className="mt-20 max-w-2xl mx-auto bg-slate-100 rounded-2xl py-5">
-				<h2 className="px-10 uppercase">📈 Productivity</h2>
+			<div className="mt-20 max-w-2xl mx-auto bg-slate-100 rounded-2xl py-5 px-10 mb-20">
+				<h2 className="uppercase font-bold mb-5">📈 Productivity</h2>
+				<div className="flex justify-end items-center gap-20">
+					<div className="flex gap-5">
+						<span>From: </span>
+						<DatePicker
+							selected={startDate}
+							onChange={(date: Date) => setStartDate(date)}
+							locale="en-GB"
+							showWeekNumbers
+							customInput={<CustomInput />}
+						/>
+					</div>
+					<div className="flex gap-5">
+						<span>To: </span>
+						<DatePicker
+							selected={startDate}
+							onChange={(date: Date) => setStartDate(date)}
+							locale="en-GB"
+							showWeekNumbers
+							customInput={<CustomInput />}
+						/>
+					</div>
+				</div>
 			</div>
 		</AuthWrapper>
 	);
