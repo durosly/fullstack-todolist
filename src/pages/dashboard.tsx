@@ -30,6 +30,8 @@ const CustomInput = forwardRef(
 	)
 );
 
+CustomInput.displayName = "CustomInput";
+
 function Dashboard() {
 	const [startDate, setStartDate] = useState(new Date());
 	return (
