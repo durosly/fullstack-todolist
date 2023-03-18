@@ -60,20 +60,23 @@ function Dashboard() {
 			</div>
 
 			<div className="mt-20 max-w-2xl mx-auto bg-slate-100 rounded-2xl py-5">
-				<h2 className="px-10 uppercase font-bold">
+				<h2 className="px-3 uppercase font-bold">
 					⌛ Current and next todo
 				</h2>
 				<ul className="">
-					<li className="flex justify-between items-center py-4 px-10 first:border-b-4">
-						<span>
+					<li className="flex justify-between items-center py-4 px-3 md:px-10 first:border-b-4">
+						<span className="truncate">
 							<span className="font-bold mr-2">1.</span>Grocery
 						</span>
 						<div className="dropdown dropdown-end">
 							<label
 								tabIndex={0}
-								className="bg-slate-200 py-1 px-2 rounded-full"
+								className="bg-slate-200 py-1 px-2 rounded-full whitespace-nowrap"
 							>
-								🏃‍♂️ In progress
+								🏃‍♂️{" "}
+								<span className="hidden md:inline">
+									In progress
+								</span>
 							</label>
 							<ul
 								tabIndex={0}
@@ -89,17 +92,20 @@ function Dashboard() {
 						</div>
 						<span>1:00:23</span>
 					</li>
-					<li className="flex justify-between items-center py-4 px-10 first:border-b-4">
-						<span>
+					<li className="flex justify-between items-center py-4 px-3 md:px-10 first:border-b-4">
+						<span className="truncate">
 							<span className="font-bold mr-2">2.</span>Buy new
 							monitor
 						</span>
 						<div className="dropdown dropdown-end">
 							<label
 								tabIndex={0}
-								className="bg-slate-200 py-1 px-2 rounded-full"
+								className="bg-slate-200 py-1 px-2 rounded-full whitespace-nowrap"
 							>
-								💤 Inactive
+								💤{" "}
+								<span className="hidden md:inline">
+									Inactive
+								</span>
 							</label>
 							<ul
 								tabIndex={0}
@@ -118,25 +124,23 @@ function Dashboard() {
 				</ul>
 			</div>
 
-			<div className="mt-20 max-w-2xl mx-auto bg-slate-100 rounded-2xl py-5 px-10 mb-20">
+			<div className="mt-20 max-w-2xl mx-auto bg-slate-100 rounded-2xl py-5 px-3 md:px-10 mb-20">
 				<h2 className="uppercase font-bold mb-5">📈 Productivity</h2>
-				<div className="flex justify-end items-center gap-20">
-					<div className="flex gap-5">
+				<div className="flex justify-between md:justify-end items-center md:gap-20 mb-5">
+					<div className="flex flex-wrap md:flex-nowrap md:gap-5">
 						<span>From: </span>
 						<DatePicker
 							selected={startDate}
 							onChange={(date: Date) => setStartDate(date)}
-							locale="en-GB"
 							showWeekNumbers
 							customInput={<CustomInput />}
 						/>
 					</div>
-					<div className="flex gap-5">
+					<div className="flex flex-wrap md:flex-nowrap md:gap-5">
 						<span>To: </span>
 						<DatePicker
 							selected={startDate}
 							onChange={(date: Date) => setStartDate(date)}
-							locale="en-GB"
 							showWeekNumbers
 							customInput={<CustomInput />}
 						/>
