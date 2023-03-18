@@ -1,4 +1,4 @@
-import { useState, forwardRef, ForwardedRef } from "react";
+import React, { useState, forwardRef, ForwardedRef } from "react";
 import DatePicker from "react-datepicker";
 import AuthWrapper from "@/components/layout/auth-wrapper";
 import Calender from "@/icons/calender";
@@ -10,22 +10,15 @@ import BarchartDisplay from "@/components/barchartDisplay";
 
 const CustomInput = forwardRef(
 	(
-		{
-			value,
-			onClick,
-		}: {
-			value: string;
-			onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-		},
-		ref: ForwardedRef<HTMLButtonElement>
+		props: React.HTMLProps<HTMLButtonElement>,
+		ref: React.Ref<HTMLButtonElement>
 	) => (
 		<button
 			className="flex items-center gap-2"
-			onClick={onClick}
-			ref={ref}
+			onClick={props.onClick}
 		>
 			<Calender className="w-5 fill-primary/30" />
-			{value}
+			{props.value}
 		</button>
 	)
 );
@@ -134,7 +127,6 @@ function Dashboard() {
 						<DatePicker
 							selected={startDate}
 							onChange={(date: Date) => setStartDate(date)}
-							showWeekNumbers
 							customInput={<CustomInput />}
 						/>
 					</div>
@@ -143,7 +135,6 @@ function Dashboard() {
 						<DatePicker
 							selected={startDate}
 							onChange={(date: Date) => setStartDate(date)}
-							showWeekNumbers
 							customInput={<CustomInput />}
 						/>
 					</div>
