@@ -55,14 +55,15 @@ function Calender() {
 					<li className="flex-1 text-center p-2">Sat</li>
 				</ul>
 				<ul>
-					{dates.map((w) => (
-						<li>
+					{dates.map((w, j) => (
+						<li key={j}>
 							<ul className="flex">
-								{w.map((d) => (
+								{w.map((d, i) => (
 									<li
-										className={`flex-1 text-center p-2 ${
+										key={i}
+										className={`flex-1 flex justify-center items-center aspect-square p-2 ${
 											d.type === "current"
-												? "font-bold cursor-pointer hover:bg-slate-500 hover:text-white rounded-2xl"
+												? "font-bold cursor-pointer hover:bg-slate-400 hover:text-white rounded-2xl"
 												: "font-light text-slate-400 cursor-not-allowed"
 										}`}
 									>
