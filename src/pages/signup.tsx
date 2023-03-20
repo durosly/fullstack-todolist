@@ -84,7 +84,7 @@ function SignupPage() {
 			if (data.status === true) {
 				dispatch({ type: "IS_SUCCESS" });
 				toast.dismiss(toastId);
-				toast.success("Signup successful");
+				toast.success("Signup successful", { id: toastId });
 			} else {
 				throw new Error(data.message);
 			}
@@ -92,13 +92,14 @@ function SignupPage() {
 			let errMsg = "";
 
 			if (axios.isAxiosError(error)) {
-				errMsg = error.response?.data.msg;
+				errMsg = error.response?.data.message;
 			} else if (error instanceof Error) {
 				errMsg = error.message;
 			}
+
 			dispatch({ type: "IS_ERROR" });
 			toast.dismiss(toastId);
-			toast.error(errMsg);
+			toast.error(errMsg, { id: toastId });
 		}
 	}
 	return (
