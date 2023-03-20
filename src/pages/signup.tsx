@@ -1,5 +1,6 @@
 import { useReducer, FormEvent } from "react";
 import axios, { AxiosResponse, AxiosError } from "axios";
+import toast from "react-hot-toast";
 import Wrapper from "@/components/layout/wrapper";
 import Github from "@/icons/github";
 import Google from "@/icons/google";
@@ -71,6 +72,7 @@ function SignupPage() {
 
 	async function signup(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
+		const toastId = toast.loading("Loading...");
 
 		try {
 			const {
@@ -80,6 +82,8 @@ function SignupPage() {
 
 			if (data.status === true) {
 				dispatch({ type: "IS_SUCCESS" });
+				toast.dismiss(toastId);
+				toast.success("Signup successful");
 			} else {
 				throw new Error(data.message);
 			}
@@ -92,6 +96,8 @@ function SignupPage() {
 				errMsg = error.message;
 			}
 			dispatch({ type: "IS_ERROR" });
+			toast.dismiss(toastId);
+			toast.error(errMsg);
 		}
 	}
 	return (
