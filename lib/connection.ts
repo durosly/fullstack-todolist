@@ -7,4 +7,6 @@ Airtable.configure({
 
 const base = Airtable.base('appKoYB2UUL6LhJoC');
 
-export { base }
+export const UserBase = base("Users")
+
+export default base
