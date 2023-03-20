@@ -72,6 +72,7 @@ function SignupPage() {
 
 	async function signup(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
+		dispatch({ type: "IS_LOADING" });
 		const toastId = toast.loading("Loading...");
 
 		try {
