@@ -83,7 +83,7 @@ function SignupPage() {
 
 			if (data.status === true) {
 				dispatch({ type: "IS_SUCCESS" });
-				toast.dismiss(toastId);
+
 				toast.success("Signup successful", { id: toastId });
 			} else {
 				throw new Error(data.message);
@@ -98,7 +98,7 @@ function SignupPage() {
 			}
 
 			dispatch({ type: "IS_ERROR" });
-			toast.dismiss(toastId);
+
 			toast.error(errMsg, { id: toastId });
 		}
 	}
