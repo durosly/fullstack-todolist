@@ -1,10 +1,12 @@
-import { useReducer } from "react";
+import { useReducer, FormEvent } from "react";
+import axios, { AxiosResponse, AxiosError } from "axios";
 import Wrapper from "@/components/layout/wrapper";
 import Github from "@/icons/github";
 import Google from "@/icons/google";
 import Link from "next/link";
 import EyeClose from "@/icons/eye-close";
 import EyeOpen from "@/icons/eye-open";
+import { UserSignupResponseDataType } from "@/types/shared/user";
 
 interface SignupUserType {
 	email: string;
@@ -28,7 +30,7 @@ interface Action {
 		| "IS_LOADING"
 		| "IS_SUCCESS"
 		| "IS_ERROR";
-	data?: any;
+	data?: any | SignupUserType;
 }
 
 const initialState: SignupType = {
@@ -66,11 +68,38 @@ function reducer(state: SignupType, action: Action) {
 
 function SignupPage() {
 	const [state, dispatch] = useReducer(reducer, initialState);
+
+	async function signup(e: FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+
+		try {
+			const {
+				data,
+			}: AxiosResponse<UserSignupResponseDataType, SignupUserType> =
+				await axios.post("/api/auth/signup", state.user);
+
+			if (data.status === true) {
+				dispatch({ type: "IS_SUCCESS" });
+			} else {
+				throw new Error(data.message);
+			}
+		} catch (error: unknown | Error | AxiosError) {
+			let errMsg = "";
+
+			if (axios.isAxiosError(error)) {
+				errMsg = error.response?.data.msg;
+			} else if (error instanceof Error) {
+				errMsg = error.message;
+			}
+			dispatch({ type: "IS_ERROR" });
+		}
+	}
 	return (
 		<Wrapper>
 			<form
 				className="max-w-md bg-slate-100 p-10 rounded-2xl mx-auto my-20"
 				action="/signup"
+				onSubmit={signup}
 			>
 				<div className="space-y-5">
 					<div>
