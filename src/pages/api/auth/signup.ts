@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
+import bcrypt from "bcrypt";
 import { UserBase } from "@/lib/connection";
 import isEmail from "validator/lib/isEmail";
 import { UserSignupResponseDataType } from "@/types/shared/user";
@@ -30,10 +31,13 @@ export default async function handler(
 			if (userResponse[0]?.get("Email") === email)
 				throw new Error("Email address is already used");
 
+			const salt = await bcrypt.genSalt(10);
+			const hashedPassword = await bcrypt.hash(password, salt);
+
 			await UserBase.create({
 				Email: email,
 				Username: username,
-				Password: password,
+				Password: hashedPassword,
 			});
 			res.status(200).json({ message: "John Doe", status: true });
 		} catch (error) {
