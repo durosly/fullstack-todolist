@@ -18,6 +18,18 @@ export default async function handler(
 
 			if (!isEmail(email)) throw new Error("Invalid E-mail address");
 
+			const userQuery = UserBase.select({
+				filterByFormula: `OR(Email = "${email}", Username = "${username}")`,
+			});
+
+			const userResponse = await userQuery.firstPage();
+
+			if (userResponse[0].get("Username") === username)
+				throw new Error("Username is already taken");
+
+			if (userResponse[0].get("Email") === email)
+				throw new Error("Email address is already used");
+
 			await UserBase.create({
 				Email: email,
 				Username: username,
