@@ -24,10 +24,10 @@ export default async function handler(
 
 			const userResponse = await userQuery.firstPage();
 
-			if (userResponse[0].get("Username") === username)
+			if (userResponse[0]?.get("Username") === username)
 				throw new Error("Username is already taken");
 
-			if (userResponse[0].get("Email") === email)
+			if (userResponse[0]?.get("Email") === email)
 				throw new Error("Email address is already used");
 
 			await UserBase.create({
