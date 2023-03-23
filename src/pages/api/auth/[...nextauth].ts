@@ -54,6 +54,8 @@ export const authOptions = {
 					profile.email_verified &&
 					profile.email.endsWith("@example.com")
 				);
+			} else if (account.provider === "github") {
+				return true;
 			}
 			return true; // Do different verification for other providers that don't have `email_verified`
 		},
