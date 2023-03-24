@@ -1,20 +1,21 @@
-import { useReducer } from "react";
+import { FormEvent, useReducer } from "react";
+import { signIn, SignInResponse } from "next-auth/react";
 import Wrapper from "@/components/layout/wrapper";
 import Github from "@/icons/github";
 import Google from "@/icons/google";
 import Link from "next/link";
 import EyeClose from "@/icons/eye-close";
 import EyeOpen from "@/icons/eye-open";
+import { toast } from "react-hot-toast";
 
-interface SignupUserType {
-	email: string;
+interface SigninUserType {
 	username: string;
 	password: string;
 }
 
-interface SignupType {
+interface SigninType {
 	isLoading: boolean;
-	user: SignupUserType;
+	user: SigninUserType;
 	togglePassword: boolean;
 }
 
@@ -27,20 +28,19 @@ interface Action {
 		| "IS_LOADING"
 		| "IS_SUCCESS"
 		| "IS_ERROR";
-	data?: any | SignupUserType;
+	data?: any | SigninUserType;
 }
 
-const initialState: SignupType = {
+const initialState: SigninType = {
 	isLoading: false,
 	user: {
-		email: "",
 		password: "",
 		username: "",
 	},
 	togglePassword: false,
 };
 
-function reducer(state: SignupType, action: Action) {
+function reducer(state: SigninType, action: Action) {
 	switch (action.type) {
 		case "SIGNIN":
 			return { ...state, isLoading: true };
@@ -65,11 +65,42 @@ function reducer(state: SignupType, action: Action) {
 function LoginPage() {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
+	async function signin(e: FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		dispatch({ type: "IS_LOADING" });
+		const toastId = toast.loading("Loading...");
+
+		try {
+			const response: SignInResponse | undefined = await signIn(
+				"credentials",
+				{
+					...state.user,
+					redirect: false,
+				}
+			);
+
+			if (response && response.ok) {
+				toast.success("Signed in", { id: toastId });
+			} else {
+				throw new Error(response?.error);
+			}
+		} catch (error: unknown) {
+			if (error instanceof Error) {
+				dispatch({ type: "IS_ERROR" });
+
+				toast.error(error?.message || "Something went wrong", {
+					id: toastId,
+				});
+			}
+		}
+	}
+
 	return (
 		<Wrapper>
 			<form
 				className="max-w-md bg-slate-100 p-10 rounded-2xl mx-auto my-20"
 				action="/login"
+				onSubmit={signin}
 			>
 				<div className="space-y-5">
 					<div>
@@ -127,7 +158,13 @@ function LoginPage() {
 						</label>
 					</div>
 					<div>
-						<button className="btn btn-primary btn-block">
+						<button
+							className={`btn ${
+								state.isLoading
+									? "loading cursor-not-allowed"
+									: "btn-primary"
+							} btn-block`}
+						>
 							Submit
 						</button>
 					</div>
