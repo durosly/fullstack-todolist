@@ -1,4 +1,5 @@
 import { FormEvent, useReducer } from "react";
+import { useRouter } from "next/router";
 import { signIn, SignInResponse } from "next-auth/react";
 import Wrapper from "@/components/layout/wrapper";
 import Github from "@/icons/github";
@@ -63,6 +64,7 @@ function reducer(state: SigninType, action: Action) {
 }
 
 function LoginPage() {
+	const router = useRouter();
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	async function signin(e: FormEvent<HTMLFormElement>) {
@@ -82,6 +84,7 @@ function LoginPage() {
 			if (response && response.ok) {
 				toast.success("Signed in", { id: toastId });
 			} else {
+				// router.push("/management");
 				throw new Error(response?.error);
 			}
 		} catch (error: unknown) {

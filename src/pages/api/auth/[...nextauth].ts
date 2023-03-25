@@ -1,7 +1,9 @@
 import NextAuth, { AuthOptions } from "next-auth";
+import bcrypt from "bcrypt";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { getUserByEmailOrUsername } from "@/lib/get-user";
 
 export const authOptions: AuthOptions = {
 	// Configure one or more authentication providers
@@ -28,15 +30,33 @@ export const authOptions: AuthOptions = {
 			},
 			async authorize(credentials, req) {
 				// Add logic here to look up the user from the credentials supplied
-				const user = {
-					id: "1",
-					name: "J Smith",
-					email: "jsmith@example.com",
-				};
+				if (!credentials?.username || !credentials.password)
+					throw new Error("Enter all fields");
+
+				const user = await getUserByEmailOrUsername({
+					username: credentials?.username || "",
+				});
 
 				if (user) {
+					if (user.Auth_Type !== "Credentials") {
+						throw new Error(
+							`Account already exist with ${user.Auth_Type} auth`
+						);
+					}
+					const isValidPassword = await bcrypt.compare(
+						credentials.password,
+						user.Password as string
+					);
+					if (!isValidPassword) {
+						throw new Error("Invalid credentials");
+					}
+
 					// Any object returned will be saved in `user` property of the JWT
-					return user;
+					return {
+						id: user.id,
+						email: user.Email as string,
+						username: user.Username,
+					};
 				} else {
 					// If you return null then an error will be displayed advising the user to check their details.
 					return null;
